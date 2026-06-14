@@ -42,6 +42,7 @@ jobs:
       - name: Build Base Code
         if: github.event_name == 'pull_request'
         run: |
+          cp -r dart_headers base_code/
           mkdir base_build && cd base_build
           cmake ../base_code
           make
