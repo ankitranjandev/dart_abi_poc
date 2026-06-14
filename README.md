@@ -32,7 +32,7 @@ dart_abi_poc/
 ├── .github/workflows/   
 │   └── abi_check.yml          # Automated CI/CD pipeline extracting & comparing ABIs
 ├── src/
-│   ├── my_extension.cpp       # Native extension simulating dart_api_dl.h usage
+│   ├── sample_extension.cpp       # Native extension simulating dart_api_dl.h usage
 │   └── flutter_embedder_mock.cpp # Unified alignment mock for flutter_embedder.h
 ├── dart_ext.abignore          # Suppression file filtering out framework internal noise
 └── CMakeLists.txt             # Build blueprint generating binaries with full DWARF info
