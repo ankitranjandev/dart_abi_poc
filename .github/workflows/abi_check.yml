@@ -1,0 +1,46 @@
+name: ABI Compatibility Check
+
+on: [push, pull_request]
+
+jobs:
+  check-abi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Libabigail and CMake
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libabigail-tools cmake build-essential
+
+      - name: Download Dart Headers
+        run: |
+          # Fetch the official headers needed for compilation
+          curl -o dart_headers/dart_api.h https://githubusercontent.com
+          curl -o dart_headers/dart_api_dl.h https://githubusercontent.com
+
+      - name: Build Current Code
+        run: |
+          mkdir build && cd build
+          cmake ..
+          make
+
+      - name: Checkout Base Branch (For Comparison)
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+          path: base_code
+
+      - name: Build Base Code
+        if: github.event_name == 'pull_request'
+        run: |
+          mkdir base_build && cd base_build
+          cmake ../base_code
+          make
+
+      - name: Run abidiff
+        if: github.event_name == 'pull_request'
+        run: |
+          abidiff --suppr dart_ext.abignore base_build/libdart_abi_extension.so build/libdart_abi_extension.so
