@@ -5,7 +5,6 @@ This repository serves as a Proof of Concept (PoC) demonstrating automated, deep
 This project addresses the industry need for automated ABI verification gates in framework codebases without introducing complex in-tree software dependencies.
 
 ---
-
 ## Key Features
 
 * **Deep Semantic Analysis:** Uses `libabigail` (`abidiff`) to inspect compiled ELF binaries with DWARF debug info. It traces full type dependency graphs rather than just surface-level text or symbol names.
