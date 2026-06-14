@@ -3,7 +3,7 @@
 #include <iostream>
 
 // Export a sample function to create an initial ABI signature
-extern "C" DART_EXPORT int64_t InitPoCExtension(void* data) {
+DART_EXPORT int64_t InitPoCExtension(void* data, int64_t unexpected_new_param) {
     if (Dart_InitializeApiDL(data) != 0) {
         return -1; // Initialization failed
     }
