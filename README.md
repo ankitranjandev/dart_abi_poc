@@ -25,7 +25,7 @@ Standard text-based checkers or basic header diff utilities frequently miss **in
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 dart_abi_poc/
@@ -40,7 +40,7 @@ dart_abi_poc/
 
 ---
 
-## ⚙️ Local Setup & Verification
+## Local Setup & Verification
 
 ### 1. Prerequisites
 Ensure you have CMake and Libabigail installed on your system.
@@ -68,6 +68,6 @@ abidw libdart_abi_extension.so
 
 ---
 
-## 🛡️ Noise Suppression (`dart_ext.abignore`)
+## Noise Suppression (`dart_ext.abignore`)
 
 To keep automated pipelines useful, we leverage an abstraction rulebook. The custom `.abignore` file in this repository filters out expected framework-level internal noise (such as changes inside the giant `Dart_ApiDex` structural lookup tables) to ensure code reviews only generate alerts when user-facing extensions or core public boundaries genuinely break.
