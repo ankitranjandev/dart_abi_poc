@@ -16,9 +16,11 @@ jobs:
 
       - name: Download Dart Headers
         run: |
+          mkdir -p dart_headers
           # Fetch the official headers needed for compilation
-          curl -o dart_headers/dart_api.h https://githubusercontent.com
-          curl -o dart_headers/dart_api_dl.h https://githubusercontent.com
+          curl -L -o dart_headers/dart_api.h https://raw.githubusercontent.com/dart-lang/sdk/main/runtime/include/dart_api.h
+          curl -L -o dart_headers/dart_api_dl.h https://raw.githubusercontent.com/dart-lang/sdk/main/runtime/include/dart_api_dl.h
+          curl -L -o dart_headers/dart_api_dl.c https://raw.githubusercontent.com/dart-lang/sdk/main/runtime/include/dart_api_dl.c
 
       - name: Build Current Code
         run: |
